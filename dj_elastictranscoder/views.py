@@ -50,7 +50,6 @@ def endpoint(request):
 
         transcode_onprogress.send(sender=None, job=job, message=message)
     elif message['state'] == 'COMPLETED':
-        print("job success ", message['jobId'])
         job = EncodeJob.objects.get(pk=message['jobId'])
         job.message = 'Success'
         job.state = 4
